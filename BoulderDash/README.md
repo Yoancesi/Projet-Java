@@ -1,3 +1,4 @@
-# JPU-BlankProject
+﻿# BouderDash
+First year EXIA students remake BoulderDash.
 
-Base de démarrage pour le projet Jave/POO/UML des 1ières années Exia-Cesi
+Coded in Java and SQL.
