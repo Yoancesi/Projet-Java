@@ -6,5 +6,12 @@ package entity;
  * @author Jean-Aymeric Diet
  */
 public abstract class Entity {
+	
+	//Gros commentaire
 
 }
+public abstract class Entity
+{
+	//kakakakakapipi
+}
+
