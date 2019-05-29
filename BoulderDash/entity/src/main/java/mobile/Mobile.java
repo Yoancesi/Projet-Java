@@ -36,8 +36,6 @@ public abstract class Mobile {
 		
 		case Direction.DOWN:
 			this.setPosition(new Point(this.position.getX(),this.position.getY()-1)));
-			
-			
 		}
 	}
 }
