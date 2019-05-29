@@ -5,12 +5,12 @@ public abstract class Entity
 	protected Sprite sprite;
 	protected boolean permeability;
 	
-	public Entity(Sprite sprite, boolean permeability)
+/*	public Entity(Sprite sprite, boolean permeability)
 	{
 		this.sprite = sprite;
 		this.permeability = permeability;
 	}
-	
+	*/
 	public Sprite getSprite() {
 		return sprite;
 	}

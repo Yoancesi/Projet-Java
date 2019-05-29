@@ -1,8 +1,9 @@
 package mobile;
 
 import mobile.Direction;
+import entity.*;
 
-public abstract class Mobile {
+public abstract class Mobile extends Entity{
 	
 	protected int x;
 	protected int y;
