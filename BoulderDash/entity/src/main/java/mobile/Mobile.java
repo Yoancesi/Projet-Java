@@ -39,30 +39,31 @@ public abstract class Mobile {
 	{
 		switch (direction)
 		{
-		case RIGHT:
-			this.setX(this.getX()+1);
-			this.setY(this.getY());
-			break;
-			
-		case LEFT:
-			this.setX(this.getX()-1);
-			this.setY(this.getY());
-			break;
-			
-		case UP:
-			this.setX(this.getX());
-			this.setY(this.getY()+1);
-			break;
-			
-		case DOWN:
-			this.setX(this.getX());
-			this.setY(this.getY()-1);
-			break;
-			
-		case NOTHING:
-			this.setX(this.getX());
-			this.setY(this.getY());
-			break;
+			case RIGHT:
+				this.setX(this.getX()+1);
+				this.setY(this.getY());
+				break;
+				
+			case LEFT:
+				this.setX(this.getX()-1);
+				this.setY(this.getY());
+				break;
+				
+			case UP:
+				this.setX(this.getX());
+				this.setY(this.getY()+1);
+				break;
+				
+			case DOWN:
+				this.setX(this.getX());
+				this.setY(this.getY()-1);
+				break;
+				
+			case NOTHING:
+				this.setX(this.getX());
+				this.setY(this.getY());
+	
+				break;
 		}
 	}
 }
