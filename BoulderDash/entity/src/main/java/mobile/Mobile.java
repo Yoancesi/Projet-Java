@@ -27,15 +27,19 @@ public abstract class Mobile {
 		{
 		case Direction.RIGHT:
 			this.setPosition(new Point(this.position.getX()+1,this.position.getY()));
+			break;
 			
 		case Direction.LEFT:
 			this.setPosition(new Point(this.position.getX()-1,this.position.getY()+1));
+			break;
 			
 		case Direction.UP:
 			this.setPosition(new Point(this.position.getX(),this.position.getY()+1));
+			break;
 		
 		case Direction.DOWN:
 			this.setPosition(new Point(this.position.getX(),this.position.getY()-1)));
+			break;
 		}
 	}
 }
