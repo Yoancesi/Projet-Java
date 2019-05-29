@@ -10,8 +10,3 @@ public abstract class Entity {
 	//Gros commentaire
 
 }
-public abstract class Entity
-{
-	//kakakakakapipi
-}
-
