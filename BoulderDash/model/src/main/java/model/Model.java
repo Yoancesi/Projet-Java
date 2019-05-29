@@ -4,13 +4,9 @@ import java.sql.SQLException;
 import java.util.Observable;
 
 import contract.IModel;
-import entity.HelloWorld;
+import entity.*;
 
-/**
- * The Class Model.
- *
- * @author Jean-Aymeric Diet
- */
+/*
 public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
@@ -83,3 +79,4 @@ public final class Model extends Observable implements IModel {
 		return this;
 	}
 }
+*/

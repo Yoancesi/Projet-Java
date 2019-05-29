@@ -1,41 +1,68 @@
 package mobile;
 
-import java.awt.Point;
 import mobile.Direction;
 
 public abstract class Mobile {
 	
-	protected Point position;
+	protected int x;
+	protected int y;
 	protected boolean alive;
 	
-	public Mobile (Point position)
-	{
-		this.position = position;
-		this.alive = true;
-		
+
+
+	public int getX() {
+		return x;
 	}
-	
-	protected void setPosition(Point point)
-	{
-		this.position = point;
+
+	public void setX(int x) {
+		this.x = x;
 	}
-	
-	
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+
 	public void move (Direction direction)
 	{
 		switch (direction)
 		{
-		case Direction.RIGHT:
-			this.setPosition(new Point(this.position.getX()+1,this.position.getY()));
+		case RIGHT:
+			this.setX(this.getX()+1);
+			this.setY(this.getY());
+			break;
 			
-		case Direction.LEFT:
-			this.setPosition(new Point(this.position.getX()-1,this.position.getY()+1));
+		case LEFT:
+			this.setX(this.getX()-1);
+			this.setY(this.getY());
+			break;
 			
-		case Direction.UP:
-			this.setPosition(new Point(this.position.getX(),this.position.getY()+1));
-		
-		case Direction.DOWN:
-			this.setPosition(new Point(this.position.getX(),this.position.getY()-1)));
+		case UP:
+			this.setX(this.getX());
+			this.setY(this.getY()+1);
+			break;
+			
+		case DOWN:
+			this.setX(this.getX());
+			this.setY(this.getY()-1);
+			break;
+			
+		case NOTHING:
+			this.setX(this.getX());
+			this.setY(this.getY());
+			break;
 		}
 	}
 }
