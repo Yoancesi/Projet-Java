@@ -18,10 +18,10 @@ class DBProperties extends Properties {
 	private final static String	PROPERTIES_FILE_NAME	= "model.properties";
 
 	/** The url. */
-	private String							url										= "";
+	private String							url										= "http://localhost:8888/phpMyAdmin/db_structure.php?db=BoulderDash";
 
 	/** The login. */
-	private String							login									= "";
+	private String							login									= "root";
 
 	/** The password. */
 	private String							password							= "";

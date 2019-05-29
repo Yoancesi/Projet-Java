@@ -65,43 +65,25 @@ class DAOHelloWorld extends DAOEntity<HelloWorld> {
 	 * @see model.DAOEntity#find(int)
 	 */
 	@Override
-	public HelloWorld find(final int id) {
-		HelloWorld helloWorld = new HelloWorld();
-
-		try {
-			final String sql = "{call helloworldById(?)}";
-			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setInt(1, id);
-			call.execute();
-			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				helloWorld = new HelloWorld(id, resultSet.getString("code"), resultSet.getString("message"));
-			}
-			return helloWorld;
-		} catch (final SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see model.DAOEntity#find(java.lang.String)
 	 */
 	@Override
-	public HelloWorld find(final String code) {
+	public HelloWorld find(final String level) {
 		HelloWorld helloWorld = new HelloWorld();
 
 		try {
-			final String sql = "{call helloworldByCode(?)}";
+			final String sql = "{addlevel2}";
 			final CallableStatement call = this.getConnection().prepareCall(sql);
-			call.setString(1, code);
+			call.setString(1, level);
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
-			if (resultSet.first()) {
-				helloWorld = new HelloWorld(resultSet.getInt("id"), code, resultSet.getString("message"));
-			}
+			//if (resultSet.first()) {
+				helloWorld = new HelloWorld(a, resultSet.getString("a"), b, resultSet.getString("b"));
+				System.out.println("ok" + resultSet);
+			//}
 			return helloWorld;
 		} catch (final SQLException e) {
 			e.printStackTrace();
