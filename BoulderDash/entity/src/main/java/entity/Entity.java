@@ -1,12 +1,27 @@
 package entity;
 
-/**
- * The Class Entity.
- *
- * @author Jean-Aymeric Diet
- */
-public abstract class Entity {
+public abstract class Entity
+{
+	protected Sprite sprite;
+	protected boolean permeability;
 	
-	//Gros commentaire
+/*	public Entity(Sprite sprite, boolean permeability)
+	{
+		this.sprite = sprite;
+		this.permeability = permeability;
+	}
+	*/
+	public Sprite getSprite() {
+		return sprite;
+	}
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}
+	public boolean isPermeability() {
+		return permeability;
+	}
+	public void setPermability(boolean permeability) {
+		this.permeability = permeability;
+	}
 
 }
