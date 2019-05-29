@@ -1,6 +1,12 @@
 package entity;
 
-public abstract class Entity
-{
-	//kakakakakapipi
+/**
+ * The Class Entity.
+ *
+ * @author Jean-Aymeric Diet
+ */
+public abstract class Entity {
+	
+	//Gros commentaire
+
 }
