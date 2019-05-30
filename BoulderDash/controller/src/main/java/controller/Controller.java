@@ -1,6 +1,6 @@
 package controller;
 
-import contract.ControllerOrder;
+import contract.UserOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -16,6 +16,8 @@ public final class Controller implements IController {
 	/** The model. */
 	private IModel	model;
 
+	private UserOrder stackOrder;
+
 	/**
 	 * Instantiates a new controller.
 	 *
@@ -29,6 +31,23 @@ public final class Controller implements IController {
 		this.setModel(model);
 	}
 
+	
+	/**
+	 * @return stackOrder
+	 */
+	public UserOrder getStackOrder() {
+		return getStackOrder();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see controller.IController#setStackOrder(model.UserOrder)
+	 */
+	public void setStackOrder(UserOrder stackOrder) {
+		this.stackOrder = stackOrder;
+	}
+	
 	/**
      * Control.
      */
@@ -38,7 +57,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Appuyer sur les touches '►', '◄', '▲' ou '▼', pour afficher Hello world dans la langue d votre choix.");
 	}
 
 	/**
@@ -61,34 +80,17 @@ public final class Controller implements IController {
 		this.model = model;
 	}
 
-	/**
-     * Order perform.
-     *
-     * @param controllerOrder
-     *            the controller order
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
-	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			case English:
-				this.model.loadHelloWorld("GB");
-				break;
-			case Francais:
-				this.model.loadHelloWorld("FR");
-				break;
-			case Deutsch:
-				this.model.loadHelloWorld("DE");
-				break;
-			case Indonesia:
-				this.model.loadHelloWorld("ID");
-				break;
-			default:
-				break;
-		}
+
+	@Override
+	public void orderPerform(UserOrder userorder) {
+		// TODO Auto-generated method stub
+		
 	}
 
+
+	@Override
+	public void directionControl() throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+	}
 }
