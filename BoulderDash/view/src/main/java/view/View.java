@@ -12,7 +12,8 @@ import contract.IView;
 /**
  * The Class View.
  *
- * @author Jean-Aymeric Diet
+ * @author Son LUONG
+ * @version 1.0
  */
 public final class View implements IView, Runnable {
 
