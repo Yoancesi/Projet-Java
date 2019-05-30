@@ -1,5 +1,6 @@
 package mobile;
 
+import UserOrder;
 import mobile.Direction;
 import entity.*;
 
@@ -8,8 +9,16 @@ public abstract class Mobile extends Entity{
 	protected int x;
 	protected int y;
 	protected boolean alive;
+	protected boolean ableToMove;
 	
 
+	public boolean isAbleToMove() {
+		return ableToMove;
+	}
+
+	public void setAbleToMove(boolean ableToMove) {
+		this.ableToMove = ableToMove;
+	}
 
 	public int getX() {
 		return x;
@@ -63,8 +72,41 @@ public abstract class Mobile extends Entity{
 			case NOTHING:
 				this.setX(this.getX());
 				this.setY(this.getY());
-	
 				break;
 		}
 	}
+	
+	public boolean ableToMove(UserOrder userOrder)
+	{
+		switch(userOrder)
+		{
+		//if the case's permability = true 
+			case Right:
+				if (entity.sprite.getPermeability((.this.sprite.getX()+1) == true)
+				{
+					
+				}
+				else 
+				
+				this
+			break;
+			
+			case Left:
+			break;
+			
+			case Up:
+			break;
+			
+			case Down:
+			break;
+			
+			case Noop:
+			break;
+			
+			default:
+			
+		}
+		return ableToMove;
+	}
 }
+

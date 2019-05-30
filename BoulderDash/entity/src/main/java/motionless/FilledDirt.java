@@ -4,10 +4,8 @@ import entity.*;
 
 public class FilledDirt extends Motionless {
 
-	public FilledDirt(int x, int y, Sprite sprite, boolean permeability) {
-		super(x, y);
-		this.sprite = sprite;
-		this.permeability = permeability;
+	public FilledDirt(int x, int y) {
+		Sprite sprite = new Sprite(x, y, "Sprite/exitportal.png", true);
 	}
 
 }
