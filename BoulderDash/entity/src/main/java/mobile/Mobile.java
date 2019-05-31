@@ -51,7 +51,6 @@ public abstract class Mobile extends Entity{
 			case RIGHT:
 				this.setX(this.getX()+1);
 				this.setY(this.getY());
-					
 				break;
 				
 			case LEFT:
