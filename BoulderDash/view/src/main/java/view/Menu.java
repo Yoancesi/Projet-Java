@@ -37,11 +37,7 @@ public class Menu extends JFrame
 		
 		bouton2.addActionListener(new ActionListener()
 		{
-<<<<<<< HEAD
-			
-		}
 
-=======
 		
 			private int choice = 0;
 
@@ -112,9 +108,5 @@ public class Menu extends JFrame
 	protected void fermer() {
 		// TODO Auto-generated method stub
 		
->>>>>>> af00d39d49ac8a1a82a23154233a146be269915e
 	}
-	
-	
-
 }
