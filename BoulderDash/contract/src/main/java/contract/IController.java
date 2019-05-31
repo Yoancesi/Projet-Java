@@ -9,8 +9,9 @@ public interface IController {
 
 	/**
 	 * Control.
+	 * @throws InterruptedException 
 	 */
-	public void control();
+	public void control() throws InterruptedException;
 
 	/**
 	 * Order perform.

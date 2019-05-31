@@ -1,6 +1,11 @@
 package controller;
 
 import contract.UserOrder;
+import entity.*;
+import mobile.*;
+import mobile.Character;
+import mobile.Direction;
+import motionless.*;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
@@ -10,13 +15,80 @@ import contract.IView;
  */
 public final class Controller implements IController {
 
-	/** The view. */
 	private IView		view;
 
-	/** The model. */
 	private IModel	model;
 
 	private UserOrder stackOrder;
+	
+	private Character character;
+	
+	private Entity sprite;
+	
+	private int map[][] = { 
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 }, 
+			{ 2, 2, 2, 2, 2, 1, 5, 2, 1, 2, 4, 1, 2, 2, 3, 4, 1, 3, 4, 3, 0, 3, 0, 6, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 3, 2, 1, 3, 3, 1, 2, 2, 3, 3, 1, 2, 3, 0, 3, 2, 3, 0, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 3, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 4, 2, 2, 2, 2, 1, 2, 3, 2, 2, 0, 7, 0, 1, 3, 3, 3, 3, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 3, 1, 1, 1, 1, 2, 4, 2, 2, 2, 2, 2, 1, 3, 3, 3, 4, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 3, 3, 4, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 3, 4, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 3, 3, 1, 2, 2, 3, 1, 4, 2, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 2, 1, 2, 2, 3, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 3, 3, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 1, 1, 3, 3, 1, 1, 1, 1, 1, 2, 2, 2, 4, 3, 3, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 2, 2, 1, 4, 3, 2, 2, 2, 1, 2, 2, 2, 2, 3, 2, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 4, 3, 2, 1, 3, 2, 2, 2, 2, 1, 2, 2, 3, 3, 3, 2, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 3, 2, 1, 2, 2, 2, 0, 0, 3, 3, 2, 2, 2, 2, 1, 3, 3, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 4, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 2, 2, 2, 4, 1, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }
+	};
+	
+	public void init()
+	{		
+		for(int y=0; y < 30; y++)
+		{
+			int x;
+			for( x=0; x < 30; x++)
+			{
+				
+				switch(map[y][x])
+				{
+					case 1: sprite = new Wall(x, y); break;
+					case 2: sprite = new FilledDirt(x, y); break;
+					case 3: sprite = new Boulder(x, y); break;
+					case 4: sprite = new Diamond(x, y); break;
+					case 6: sprite = new ExitPortal(x, y); break;
+					case 7: sprite = new KillerButterfly(); break;
+					default:sprite = new DugDirt(x, y); 
+							if(map[y][x] == 5) 
+							{
+								character = new Character(x, y);
+								//pan.add(hero);
+							}
+							break;
+				}
+				sprite.setX(x);
+				sprite.setY(y);
+				//pan.add(sprite);
+		}
+		}
+	}
+
 
 	/**
 	 * Instantiates a new controller.
@@ -31,16 +103,11 @@ public final class Controller implements IController {
 		this.setModel(model);
 	}
 
-	
-	/**
-	 * @return stackOrder
-	 */
 	public UserOrder getStackOrder() {
 		return getStackOrder();
 	}
 	
 	/*
-	 * (non-Javadoc)
 	 * 
 	 * @see controller.IController#setStackOrder(model.UserOrder)
 	 */
@@ -48,34 +115,19 @@ public final class Controller implements IController {
 		this.stackOrder = stackOrder;
 	}
 	
-	/**
-     * Control.
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-		this.view.printMessage("Appuyer sur les touches '►', '◄', '▲' ou '▼', pour faire bouger le personnage dans le sens choisi.");
+	
+	public IModel getModel() {
+		return model;
 	}
 
-	/**
-     * Sets the view.
-     *
-     * @param pview
-     *            the new view
-     */
 	private void setView(final IView pview) {
 		this.view = pview;
 	}
+	
+	public IView getView() {
+		return view;
+	}
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *          the new model
-	 */
 	private void setModel(final IModel model) {
 		this.model = model;
 	}
@@ -93,4 +145,53 @@ public final class Controller implements IController {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
+	public int[][] getMap() {
+		return map;
+	}
+
+	public void setMap(int[][] map) {
+		this.map = map;
+	}
+
+	/**
+     * Control.
+     */
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see contract.IController#control()
+	 */
+	/* Start.
+	   * 
+	   * @throws InterruptedException
+	   */
+	  @Override
+	  public void control() throws InterruptedException {
+	  //
+	    while (this.character.isAlive()) {
+	      
+	 //     if (this.character().ableToMove(this.getStackOrder())) {
+	        switch (this.getStackOrder()) {
+	        case Right:
+	          this.character.move(mobile.Direction.RIGHT);
+	          break;
+	        case Left:
+	        	this.character.move(mobile.Direction.LEFT);
+	          break;
+	        case Down:
+	        	this.character.move(mobile.Direction.DOWN);
+	          break;
+	        case Up:
+	        	this.character.move(mobile.Direction.UP);
+	          break;
+	        case Noop:
+	        default:
+	        	this.character.move(mobile.Direction.NOTHING);
+	          break;
+	        }  
+	      }
+	  
 }
