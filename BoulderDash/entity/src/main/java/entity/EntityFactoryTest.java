@@ -25,25 +25,28 @@ public class EntityFactoryTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
 	public void testMakeWall() {
-		fail("Not yet implemented");
+		Entity test = entity.EntityFactory.makeWall(1, 1);
+		assertNotNull(test);
 	}
 
 	@Test
 	public void testMakeFilledDirt() {
-		fail("Not yet implemented");
+		Entity test = entity.EntityFactory.makeFilledDirt(1, 1);
+		assertNotNull(test);
 	}
 
 	@Test
 	public void testMakeDugDirt() {
-		fail("Not yet implemented");
-	}
-
+		Entity test = entity.EntityFactory.makeDugDirt(1, 1);
+		assertNotNull(test);
+	}	
 	@Test
 	public void testMakeExitPortal() {
-		fail("Not yet implemented");
+		Entity test = entity.EntityFactory.makeExitPortal(1, 1);
+		assertNotNull(test);
 	}
 
 }

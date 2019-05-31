@@ -4,10 +4,10 @@ import motionless.*;
 
 public class EntityFactory
 {
-	protected static Wall wall;
-	protected static FilledDirt filledDirt;
-	protected static DugDirt dugDirt;
-	protected static ExitPortal exitPortal;
+	protected static Entity wall;
+	protected static Entity filledDirt;
+	protected static Entity dugDirt;
+	protected static Entity exitPortal;
 	
 	public static Entity makeWall(int x, int y)
 	{

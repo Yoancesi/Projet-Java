@@ -20,7 +20,7 @@ public class SpriteTest {
 
 	@Before
 	public void setUp() throws Exception {
-		final Sprite testSprite = new Sprite(1, 2, "character.png", false);
+		Sprite testSprite = new Sprite(1, 2, "character.png", false);
 	}
 
 	@After
