@@ -27,8 +27,8 @@ public class Sprite {
     public boolean isPermeability() {
 		return permeability;
 	}
-    
-    public boolean isVisible() {
+
+	public boolean isVisible() {
         return visible;
     }
 

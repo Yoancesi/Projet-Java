@@ -5,7 +5,7 @@
  */
 package main;
 
-import contract.ControllerOrder;
+import contract.UserOrder;
 import controller.Controller;
 import model.Model;
 import view.View;
@@ -30,6 +30,6 @@ public abstract class Main {
         view.setController(controller);
 
         controller.control();
-        controller.orderPerform(ControllerOrder.English);
+        controller.orderPerform(UserOrder.English);
     }
 }
