@@ -57,7 +57,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage("Appuyer sur les touches '►', '◄', '▲' ou '▼', pour afficher Hello world dans la langue d votre choix.");
+		this.view.printMessage("Appuyer sur les touches '►', '◄', '▲' ou '▼', pour faire bouger le personnage dans le sens choisi.");
 	}
 
 	/**

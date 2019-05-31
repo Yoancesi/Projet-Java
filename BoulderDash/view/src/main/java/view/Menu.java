@@ -37,16 +37,7 @@ public class Menu extends JFrame
 		{
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 	}
 	
 	
