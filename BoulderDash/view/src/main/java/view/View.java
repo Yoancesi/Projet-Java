@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
@@ -9,6 +10,11 @@ import contract.IController;
 import contract.IModel;
 import contract.IView;
 
+import entity.*;
+import mobile.*;
+import motionless.*;
+
+import showboard.BoardFrame;
 /**
  * The Class View.
  *
@@ -19,7 +25,18 @@ public final class View implements IView, Runnable {
 
 	/** The frame. */
 	private final ViewFrame viewFrame;
+	
+	/** The player's character */
+	protected Mobile myCharacter = null;
+	
+	/** The close view on the player */
+	protected Rectangle closeView = null;
+	
+	/** The order performer */
+	protected UserOrder orderPerformer = null;
 
+	/** The BoardFrame */
+	protected final BoardFrame boardFrame = new BoardFrame("BoulderDash");
 	/**
 	 * Instantiates a new view.
 	 *
@@ -39,18 +56,24 @@ public final class View implements IView, Runnable {
 	 * @return the controller order
 	 */
 	protected static UserOrder keyCodeToControllerOrder(final int keyCode) {
+		UserOrder userOrder;
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return UserOrder.Right;
-			case KeyEvent.VK_F:
-				return UserOrder.Left;
-			case KeyEvent.VK_D:
-				return UserOrder.Up;
-			case KeyEvent.VK_I:
-				return UserOrder.Down;
+			case KeyEvent.VK_RIGHT:
+				userOrder = UserOrder.Right;
+				break;
+			case KeyEvent.VK_LEFT:
+				userOrder = UserOrder.Left;
+				break;
+			case KeyEvent.VK_UP:
+				userOrder = UserOrder.Up;
+				break;
+			case KeyEvent.VK_DOWN:
+				userOrder = UserOrder.Down;
+				break;
 			default:
 				return UserOrder.Noop;
 		}
+		return userOrder;
 	}
 
 	/*
