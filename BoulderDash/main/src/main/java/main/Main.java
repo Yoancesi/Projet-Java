@@ -5,10 +5,10 @@
  */
 package main;
 
-import contract.UserOrder;
+import contract.*;
 import controller.Controller;
-import model.Model;
 import view.View;
+import model.*;
 
 /**
  * The Class Main.
@@ -29,7 +29,7 @@ public abstract class Main {
         final Controller controller = new Controller(view, model);
         view.setController(controller);
 
-        controller.control();
-        controller.orderPerform(UserOrder.English);
+       // controller.control();
+        controller.orderPerform(UserOrder.Up);
     }
 }

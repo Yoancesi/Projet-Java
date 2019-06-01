@@ -25,6 +25,9 @@ public final class Controller implements IController {
 	
 	private Entity sprite;
 	
+	
+	//testmap
+	
 	private int map[][] = { 
 			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
 			{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
@@ -193,5 +196,14 @@ public final class Controller implements IController {
 	          break;
 	        }  
 	      }
-	  
+
+	      
+// not yet implemented : countDiamonds
+//	     if (countDiamonds == 0) {
+	        this.getView().printMessage("WIN");
+	        System.exit(0);
+//	      }
+	    this.getView().printMessage("GAME OVER");
+	    System.exit(0);
+	  }	  
 }

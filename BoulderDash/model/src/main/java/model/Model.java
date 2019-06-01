@@ -6,7 +6,7 @@ import java.util.Observable;
 import contract.IModel;
 import entity.*;
 
-/*
+
 public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
@@ -79,4 +79,3 @@ public final class Model extends Observable implements IModel {
 		return this;
 	}
 }
-*/
