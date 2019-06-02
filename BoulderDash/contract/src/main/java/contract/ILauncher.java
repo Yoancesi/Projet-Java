@@ -8,5 +8,5 @@ public interface ILauncher {
 	@return tab [][]
 	*/
 	
-	public char[][] getTab();
+	public char[][] getTable();
 }
