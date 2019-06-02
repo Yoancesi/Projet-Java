@@ -1,4 +1,4 @@
-package model.dao;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import model.IDAOConnector;
+import contract.IDBConnection;
 
-public class DAOConnector extends LaunchDBQuery implements IDAOConnector {
-	private final String URL = "jdbc:mysql://localhost:3307/boulderdash?useSSL=false&serverTimezone=UTC";
+public class DBConnection extends Launcher implements IDBConnection {
+	private final String URL = "jdbc:mysql://localhost:8888/phpMyAdmin/db_structure.php?server=1&db=jpublankproject";
 	private final String LOGIN = "root";
 	private final String PASSWORD = "";
 	private Connection connection = null;
@@ -20,7 +20,7 @@ public class DAOConnector extends LaunchDBQuery implements IDAOConnector {
 	 * 
 	 * @param level
 	 */
-	public DAOConnector(int level) {
+	public DBConnection(int level) {
 		super(level);
 		// TODO Auto-generated constructor stub
 	}
