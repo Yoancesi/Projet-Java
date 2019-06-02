@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -28,6 +30,68 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame					viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
+	Font font = new Font("Sah quel plaisir", Font.BOLD, 15);
+	private int diamondsGet = 0;
+	private IMapMaker maker;
+	private int finalDiamonds;
+	
+	/**
+	 * The constucteur of Panel
+	 * 
+	 *  @param maker
+	 */
+	
+	public Panel(MapMaker maker, int finalDiamonds)
+	{
+		this.maker = maker;
+		this.finalDiamonds = finalDiamonds;
+	}
+	
+	/**
+	 * Calls the draw functions of MapMaker
+	 * 
+	 * @param g
+	 */
+	
+	public void counterDiamond(Graphics g)
+	{
+		g.setFont(font);
+		g.setColor(Color.black);
+		g.drawString("Diamonds : " + diamondsGet + "/" + finalDiamonds, 10, 365);
+	}
+	
+	/**
+	 * @param g
+	 */
+	
+	public void updateCount(Graphics g)
+	{
+		g.setColor(Color.white);
+		g.fillRect(0, 0, 800, 500);
+	}
+	
+	
+	public void paintComponent1(Graphics g)
+	{
+		this.updateCount(g);
+		this.counterDiamond(g);
+		this.maker.drawMap(g);
+	}
+	
+	/**
+	 * Update the map when mouvement is done
+	 */
+	
+	public void update()
+	{
+		this.repaint();
+	}
+	
+	public int getDiamondsGet()
+	{
+		return diamondsGet;
+	}
+	
 	private Character character;
 	
 	private Entity sprite;
