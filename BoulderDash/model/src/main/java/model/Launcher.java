@@ -23,11 +23,12 @@ public class Launcher {
 		connector = new DBConnection(level);
 		connector.connection();
 		
-		CreateMAP = new CreateMAP(level);
-		result = createMAP.executeMapQuery(result, statement);
+		CreateMAP CreateMAP = new CreateMAP(level);
+		result = CreateMAP.executeMapQuery(result, statement);
 		mapQuery.setMapQueryIntoTable(result, tab);
 	}
 	
 	public char[][] getTable() {
+		return tab;	
 	}
 }

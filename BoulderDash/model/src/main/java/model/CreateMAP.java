@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 import contract.*;
 
-public class CreateMAP extends Launcher implements IMapQuery{
+public class CreateMAP extends Launcher implements ICreateMAP {
 	
 
 	public CreateMAP(int level) {

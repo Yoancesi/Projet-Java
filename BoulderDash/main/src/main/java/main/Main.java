@@ -22,14 +22,15 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws InterruptedException 
      */
-    public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
+    public static void main(final String[] args) throws InterruptedException {
+        final Launcher launcher = new Launcher(1);
+        final View view = new View(Launcher);
+        final Controller controller = new Controller(view, launcher);
         view.setController(controller);
 
-       // controller.control();
+        controller.control();
         controller.orderPerform(UserOrder.Up);
     }
 }
