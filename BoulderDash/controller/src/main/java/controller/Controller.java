@@ -22,44 +22,10 @@ public final class Controller implements IController {
 
 	private UserOrder stackOrder;
 	
-	
-private Character character;
+	private Character character;
 	
 	private Entity sprite;
-	
-	//testmap
-	
-	//should be in view
-	public void mapInitialisation()
-	{	
-		char map[][] = launcher.getTable();
-		for(int y=0; y < 30; y++)
-		{
-			int x;
-			for( x=0; x < 30; x++)
-			{
-				switch(map[y][x])
-				{
-					case 'X' : sprite = new Wall(x, y); break;
-					case 'V': sprite = new FilledDirt(x, y); break;
-					case 'C': sprite = new Boulder(x, y); break;
-					case 'D': sprite = new Diamond(x, y); break;
-					case 'S': sprite = new ExitPortal(x, y); break;
-					case 'K': sprite = new KillerButterfly(); break;
-					default:sprite = new DugDirt(x, y);
-							if(map[y][x] == 'P') 
-							{
-								character = new Character(x, y);
-								pan.add(character);
-							}
-							break;
-				}
-				sprite.setX(x);
-				sprite.setY(y);
-				pan.add(sprite);
-		}
-		}
-	}
+
 
 	/**
 	 * Instantiates a new controller.
