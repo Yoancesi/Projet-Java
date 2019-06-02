@@ -11,8 +11,6 @@ public class CreateMAP extends Launcher implements ICreateMAP {
 
 	public CreateMAP(int level) {
 		super(level);
-		
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
