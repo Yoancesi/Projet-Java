@@ -66,22 +66,18 @@ public final class Controller implements IController {
 
 	@Override
 	public void orderPerform(UserOrder userorder) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
 	public void directionControl() throws InterruptedException {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 	
-
 	  @Override
 	  public void control() throws InterruptedException {
-	  //
-	    while (this.character.isAlive()) {
-	      
+
+	    while (this.character.isAlive()) {	      
 	 //     if (this.character().ableToMove(this.getStackOrder())) {
 	        switch (this.getStackOrder()) {
 	        case Right:
@@ -102,12 +98,11 @@ public final class Controller implements IController {
 	          break;
 	        }  
 	      }
-	   
-// not yet implemented : countDiamonds
-//	     if (countDiamonds == 0) {
+	    
+	     if (view.counterDiamonds() == 0) {
 	        this.getView().printMessage("WIN");
 	        System.exit(0);
-//	      }
+	      }
 	    this.getView().printMessage("GAME OVER");
 	    System.exit(0);
 	  }
