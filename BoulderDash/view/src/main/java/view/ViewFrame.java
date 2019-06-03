@@ -16,7 +16,7 @@ import contract.IModel;
  *
  * @author Son LUONG
  */
-class ViewFrame extends JFrame implements KeyListener {
+class ViewFrame extends JFrame implements KeyListener, Runnable {
 
 	/** The model. */
 	private IModel						model;
@@ -184,5 +184,17 @@ class ViewFrame extends JFrame implements KeyListener {
 	 */
 	public void keyReleased(final KeyEvent e) {
 
+	}
+
+
+	@Override
+	public void run() 
+	{
+		new Thread().start();
+	}
+	
+	public void stop()
+	{
+		System.exit(0);
 	}
 }

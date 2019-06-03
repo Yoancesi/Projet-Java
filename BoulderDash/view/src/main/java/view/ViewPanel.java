@@ -8,7 +8,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
-
+import model.Launcher;
+import contract.ILauncher;
 import entity.Entity;
 import mobile.Boulder;
 import mobile.Character;
@@ -166,7 +167,7 @@ class ViewPanel extends JPanel implements Observer {
 		//testmap
 		
 		//should be in view
-
+		char map[][] = new Launcher(1);
 		{	
 			char map[][] = launcher.getTable();
 			for(int y=0; y < 30; y++)

@@ -6,7 +6,7 @@ import java.sql.Statement;
 import contract.*;
 
 
-public class Launcher {
+public class Launcher implements ILauncher{
 	protected static int level = 0;
 	protected static char tab[][] = new char[13][13];
 	protected static DBConnection connector;
