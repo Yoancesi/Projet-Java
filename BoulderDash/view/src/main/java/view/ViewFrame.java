@@ -27,6 +27,20 @@ class ViewFrame extends JFrame implements KeyListener {
 	private static final long	serialVersionUID	= -697358409737458175L;
 
 	/**
+	 * Frame class constructor
+	 */
+	public ViewFrame()
+	{
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("BoulderDash");
+		this.setResizable(false);
+		this.addKeyListener(this);
+		this.setSize(512, 512);
+		this.setLocationRelativeTo(null);
+	}
+	
+	
+	/**
 	 * Instantiates a new view frame.
 	 *
 	 * @param model
