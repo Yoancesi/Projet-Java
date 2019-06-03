@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Panel;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -161,9 +162,7 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		
-
-		
+				
 		//testmap
 		
 		//should be in view
@@ -177,7 +176,7 @@ class ViewPanel extends JPanel implements Observer {
 				{
 					switch(map[y][x])
 					{
-						case 'X' : sprite = new Wall(x, y); break;
+						case 'X': sprite = new Wall(x, y); break;
 						case 'V': sprite = new FilledDirt(x, y); break;
 						case 'C': sprite = new Boulder(x, y); break;
 						case 'D': sprite = new Diamond(x, y); break;
@@ -187,13 +186,13 @@ class ViewPanel extends JPanel implements Observer {
 								if(map[y][x] == 'P') 
 								{
 									character = new Character(x, y);
-									pan.add(character);
+									Panel.add(character);
 								}
 								break;
 					}
 					sprite.setX(x);
 					sprite.setY(y);
-					pan.add(sprite);
+					Panel.add(sprite);
 			}
 			}
 		}
