@@ -12,7 +12,16 @@ public class Sprite {
     protected boolean permeability;
 	protected boolean visible;
     protected Image image;
-    protected String imageName;
+    
+    public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
+	protected String imageName;
 
     public Sprite(int x, int y, String imageName, boolean permeability)
     {

@@ -5,7 +5,7 @@ import entity.*;
 import mobile.*;
 import mobile.Character;
 import mobile.Direction;
-import model.Launcher;
+import model.*w;
 import motionless.*;
 import contract.IController;
 import contract.ILauncher;

@@ -8,6 +8,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
+import contract.*;
+import model.CreateMAP;
 import model.Launcher;
 import contract.ILauncher;
 import entity.Entity;
@@ -34,7 +36,7 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long	serialVersionUID	= -998294702363713521L;
 	Font font = new Font("Sah quel plaisir", Font.BOLD, 15);
 	private int diamondsGet = 0;
-	private IMapMaker maker; //IMapMaker fait référence à une interface que je ferais demain, j'ai le code à moitié
+	private Launcher launcher;
 	private int finalDiamonds;
 	
 	/**
@@ -43,9 +45,9 @@ class ViewPanel extends JPanel implements Observer {
 	 *  @param maker
 	 */
 	
-	public Panel(MapMaker maker, int finalDiamonds)
+	public ViewPanel(Launcher launcher, int finalDiamonds)
 	{
-		this.maker = maker;
+		this.launcher = launcher;
 		this.finalDiamonds = finalDiamonds;
 	}
 	
@@ -72,14 +74,14 @@ class ViewPanel extends JPanel implements Observer {
 		g.fillRect(0, 0, 800, 500);
 	}
 	
-	
+	/*
 	public void paintComponent1(Graphics g)
 	{
 		this.updateCount(g);
 		this.counterDiamond(g);
-		this.maker.drawMap(g);
+		this.launcher.drawMap(g);
 	}
-	
+	*/
 	/**
 	 * Update the map when mouvement is done
 	 */
@@ -154,20 +156,18 @@ class ViewPanel extends JPanel implements Observer {
 	public void update(final Observable arg0, final Object arg1) {
 		this.repaint();
 	}
-
 	/*
 	 * (non-Javadoc)
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	@Override
-	protected void paintComponent(final Graphics graphics) {
+	protected void paintComponent(final Graphics graphics, Launcher launcher) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				
 		//testmap
 		
 		//should be in view
-		char map[][] = new Launcher(1);
+		this.launcher = new Launcher(1);
 		{	
 			char map[][] = launcher.getTable();
 			for(int y=0; y < 30; y++)
@@ -187,13 +187,13 @@ class ViewPanel extends JPanel implements Observer {
 								if(map[y][x] == 'P') 
 								{
 									character = new Character(x, y);
-									Panel.add(character);
+									graphics.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), null);
 								}
 								break;
 					}
 					sprite.setX(x);
 					sprite.setY(y);
-					Panel.add(sprite);
+					graphics.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), null);
 			}
 			}
 		}

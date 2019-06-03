@@ -1,5 +1,7 @@
 package entity;
 
+import java.awt.Image;
+
 public abstract class Entity
 {
 	protected Sprite sprite;
@@ -24,6 +26,10 @@ public abstract class Entity
 	}
 	public void setSprite(Sprite sprite) {
 		this.sprite = sprite;
+	}
+	
+	public Image getImage() {
+		return sprite.image;
 	}
 	public boolean isPermeability() {
 		return permeability;
