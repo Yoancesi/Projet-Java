@@ -1,5 +1,7 @@
 package contract;
 
+import java.awt.Graphics;
+
 /**
  * The Interface IView.
  *
@@ -14,4 +16,7 @@ public interface IView {
 	 *          the message
 	 */
 	void printMessage(final String message);
+	
+	public void counterDiamond(Graphics g);
+
 }

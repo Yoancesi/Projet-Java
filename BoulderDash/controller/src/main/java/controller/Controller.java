@@ -2,21 +2,20 @@ package controller;
 
 import contract.UserOrder;
 import entity.*;
-import mobile.*;
 import mobile.Character;
-import mobile.Direction;
-import model.*w;
-import motionless.*;
 import contract.IController;
 import contract.ILauncher;
 import contract.IView;
+import view.*;
 
 /**
  * The Class Controller.
  */
 public final class Controller implements IController {
 
-	private IView	view;
+	private IView	iview;
+	
+	protected ViewPanel viewPanel;
 
 	private ILauncher launcher;
 
@@ -57,11 +56,11 @@ public final class Controller implements IController {
 	}
 
 	private void setView(final IView pview) {
-		this.view = pview;
+		this.iview = pview;
 	}
 	
 	public IView getView() {
-		return view;
+		return iview;
 	}
 
 	@Override
@@ -99,7 +98,7 @@ public final class Controller implements IController {
 	        }  
 	      }
 	    
-	     if (view.counterDiamonds() == 0) {
+	     if (viewPanel.getFinalDiamonds() == 0) {
 	        this.getView().printMessage("WIN");
 	        System.exit(0);
 	      }

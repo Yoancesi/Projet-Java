@@ -28,7 +28,7 @@ import motionless.Wall;
  *
  * @author Son LUONG
  */
-class ViewPanel extends JPanel implements Observer {
+public class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame					viewFrame;
@@ -62,6 +62,11 @@ class ViewPanel extends JPanel implements Observer {
 		g.setFont(font);
 		g.setColor(Color.black);
 		g.drawString("Diamonds : " + diamondsGet + "/" + finalDiamonds, 10, 365);
+		this.finalDiamonds = diamondsGet;
+	}
+	
+	public int getFinalDiamonds() {
+		return finalDiamonds;
 	}
 	
 	/**
