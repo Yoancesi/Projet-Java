@@ -18,7 +18,7 @@ import motionless.DugDirt;
 import motionless.ExitPortal;
 import motionless.FilledDirt;
 import motionless.Wall;
-import model.*;
+//import model.*;
 
 /**
  * The Class ViewPanel.
@@ -33,7 +33,7 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long	serialVersionUID	= -998294702363713521L;
 	Font font = new Font("Sah quel plaisir", Font.BOLD, 15);
 	private int diamondsGet = 0;
-	private IMapMaker maker;
+	private IMapMaker maker; //IMapMaker fait référence à une interface que je ferais demain, j'ai le code à moitié
 	private int finalDiamonds;
 	
 	/**

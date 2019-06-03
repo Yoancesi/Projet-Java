@@ -24,7 +24,7 @@ import showboard.BoardFrame;
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame = new ViewFrame();
+	private ViewFrame viewFrame = new ViewFrame(null);
 	
 	/** The player's character */
 	protected Mobile myCharacter = null;
