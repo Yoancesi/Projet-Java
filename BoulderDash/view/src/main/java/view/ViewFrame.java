@@ -16,7 +16,7 @@ import contract.IModel;
  *
  * @author Son LUONG
  */
-class ViewFrame extends JFrame implements KeyListener {
+class ViewFrame extends JFrame implements KeyListener{
 
 	/** The model. */
 	private IModel						model;
@@ -26,6 +26,20 @@ class ViewFrame extends JFrame implements KeyListener {
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
 
+	/**
+	 * Frame class constructor
+	 */
+	public ViewFrame()
+	{
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setTitle("BoulderDash");
+		this.setResizable(false);
+		this.addKeyListener(this);
+		this.setSize(512, 512);
+		this.setLocationRelativeTo(null);
+	}
+	
+	
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -125,7 +139,7 @@ class ViewFrame extends JFrame implements KeyListener {
 	 * @param model
 	 *          the model
 	 */
-	private void buildViewFrame(final IModel model) {
+	void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);

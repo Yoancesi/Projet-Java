@@ -1,16 +1,17 @@
 package contract;
 
+import contract.UserOrder;
 /**
  * The Interface IController.
- *
- * @author Jean-Aymeric Diet
  */
+
 public interface IController {
 
 	/**
 	 * Control.
+	 * @throws InterruptedException 
 	 */
-	public void control();
+	public void control() throws InterruptedException;
 
 	/**
 	 * Order perform.
@@ -18,5 +19,15 @@ public interface IController {
 	 * @param controllerOrder
 	 *          the controller order
 	 */
-	public void orderPerform(ControllerOrder controllerOrder);
+	public void orderPerform(UserOrder userorder);
+	
+	/**
+	 * @throws InterruptedException
+	 */
+	public void directionControl() throws InterruptedException;
+	
+	/**
+	 * @param userOrder
+	 */
+	public void setStackOrder(final UserOrder userOrder);
 }

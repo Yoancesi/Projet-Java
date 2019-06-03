@@ -8,8 +8,16 @@ public abstract class Mobile extends Entity{
 	protected int x;
 	protected int y;
 	protected boolean alive;
+	protected boolean ableToMove;
 	
 
+	public boolean isAbleToMove() {
+		return ableToMove;
+	}
+
+	public void setAbleToMove(boolean ableToMove) {
+		this.ableToMove = ableToMove;
+	}
 
 	public int getX() {
 		return x;
@@ -63,8 +71,8 @@ public abstract class Mobile extends Entity{
 			case NOTHING:
 				this.setX(this.getX());
 				this.setY(this.getY());
-	
 				break;
 		}
 	}
 }
+

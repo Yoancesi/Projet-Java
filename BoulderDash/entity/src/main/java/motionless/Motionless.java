@@ -25,9 +25,10 @@ public abstract class Motionless extends Entity {
 		this.y = y;
 	}
 
-	public Motionless(int x, int y)
+	/*public Motionless(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
 	}
+	*/
 }

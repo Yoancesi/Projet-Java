@@ -1,14 +1,22 @@
 package view;
 
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
-import contract.ControllerOrder;
+import contract.UserOrder;
 import contract.IController;
 import contract.IModel;
 import contract.IView;
 
+import entity.*;
+import mobile.*;
+import model.Launcher;
+import motionless.*;
+
+import showboard.BoardFrame;
 /**
  * The Class View.
  *
@@ -18,7 +26,27 @@ import contract.IView;
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
+	private IModel model;
+	private ViewFrame viewFrame;
+	private ViewPanel viewPanel;
+	protected Launcher launcher;
+	
+	/** The player's character */
+	protected Mobile myCharacter = null;
+	
+	/** The close view on the player */
+	protected Rectangle closeView = null;
+	
+	/** The order performer */
+	protected UserOrder orderPerformer = null;
+
+	/** The BoardFrame */
+	protected final BoardFrame boardFrame = new BoardFrame("BoulderDash");
+	
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+	
 
 	/**
 	 * Instantiates a new view.
@@ -26,9 +54,14 @@ public final class View implements IView, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	public View(final IModel model) {
+	public View(Launcher launcher) {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
+		viewFrame.buildViewFrame(model);
+		
+		viewPanel = new ViewPanel(viewFrame);
+		viewPanel.paintComponent(launcher);
+		viewPanel.update();
 	}
 
 	/**
@@ -38,19 +71,25 @@ public final class View implements IView, Runnable {
 	 *          the key code
 	 * @return the controller order
 	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
+	protected static UserOrder keyCodeToControllerOrder(final int keyCode) {
+		UserOrder userOrder;
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
+			case KeyEvent.VK_RIGHT:
+				userOrder = UserOrder.Right;
+				break;
+			case KeyEvent.VK_LEFT:
+				userOrder = UserOrder.Left;
+				break;
+			case KeyEvent.VK_UP:
+				userOrder = UserOrder.Up;
+				break;
+			case KeyEvent.VK_DOWN:
+				userOrder = UserOrder.Down;
+				break;
 			default:
-				return ControllerOrder.English;
+				return UserOrder.Noop;
 		}
+		return userOrder;
 	}
 
 	/*
@@ -69,6 +108,7 @@ public final class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+		new Thread().start();
 	}
 
 	/**
@@ -79,5 +119,11 @@ public final class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
+	}
+
+	@Override
+	public void counterDiamond(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

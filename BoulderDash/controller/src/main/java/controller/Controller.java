@@ -1,20 +1,31 @@
 package controller;
 
-import contract.ControllerOrder;
+import contract.UserOrder;
+import entity.*;
+import mobile.Character;
+import model.Launcher;
 import contract.IController;
-import contract.IModel;
+import contract.ILauncher;
 import contract.IView;
+import view.*;
 
 /**
  * The Class Controller.
  */
 public final class Controller implements IController {
 
-	/** The view. */
-	private IView		view;
+	private IView	iview;
+	
+	protected ViewPanel viewPanel;
 
-	/** The model. */
-	private IModel	model;
+	private ILauncher launcher;
+
+	private UserOrder stackOrder;
+	
+	private Character character;
+	
+	private Entity sprite;
+
 
 	/**
 	 * Instantiates a new controller.
@@ -24,71 +35,76 @@ public final class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final IModel model) {
+	public Controller(final View view, final Launcher launcher) {
 		this.setView(view);
-		this.setModel(model);
+		this.setLauncher(launcher);
+		
 	}
 
-	/**
-     * Control.
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-		this.view.printMessage("Appuyer sur les touches 'E', 'F', 'D' ou 'I', pour afficher Hello world dans la langue d votre choix.");
+	public UserOrder getStackOrder() {
+		return getStackOrder();
+	}
+	
+	public void setStackOrder(UserOrder stackOrder) {
+		this.stackOrder = stackOrder;
+	}
+	
+	public void setLauncher(ILauncher launcher) {
+		this.launcher = launcher;
 	}
 
-	/**
-     * Sets the view.
-     *
-     * @param pview
-     *            the new view
-     */
+	public ILauncher getLauncher() {
+		return launcher;
+	}
+
 	private void setView(final IView pview) {
-		this.view = pview;
+		this.iview = pview;
+	}
+	
+	public IView getView() {
+		return iview;
 	}
 
-	/**
-	 * Sets the model.
-	 *
-	 * @param model
-	 *          the new model
-	 */
-	private void setModel(final IModel model) {
-		this.model = model;
+	@Override
+	public void orderPerform(UserOrder userorder) {
+		// TODO Auto-generated method stub	
 	}
 
-	/**
-     * Order perform.
-     *
-     * @param controllerOrder
-     *            the controller order
-     */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
-	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-			case English:
-				this.model.loadHelloWorld("GB");
-				break;
-			case Francais:
-				this.model.loadHelloWorld("FR");
-				break;
-			case Deutsch:
-				this.model.loadHelloWorld("DE");
-				break;
-			case Indonesia:
-				this.model.loadHelloWorld("ID");
-				break;
-			default:
-				break;
-		}
+	@Override
+	public void directionControl() throws InterruptedException {
+		// TODO Auto-generated method stub	
 	}
+	
+	  @Override
+	  public void control() throws InterruptedException {
 
+	    while (this.character.isAlive()) {	      
+	 //     if (this.character().ableToMove(this.getStackOrder())) {
+	        switch (this.getStackOrder()) {
+	        case Right:
+	          this.character.move(mobile.Direction.RIGHT);
+	          break;
+	        case Left:
+	        	this.character.move(mobile.Direction.LEFT);
+	          break;
+	        case Down:
+	        	this.character.move(mobile.Direction.DOWN);
+	          break;
+	        case Up:
+	        	this.character.move(mobile.Direction.UP);
+	          break;
+	        case Noop:
+	        default:
+	        	this.character.move(mobile.Direction.NOTHING);
+	          break;
+	        }  
+	      }
+	    
+	     if (viewPanel.getFinalDiamonds() == 0) {
+	        this.getView().printMessage("WIN");
+	        System.exit(0);
+	      }
+	    this.getView().printMessage("GAME OVER");
+	    System.exit(0);
+	  }
 }

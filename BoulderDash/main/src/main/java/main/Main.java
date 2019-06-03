@@ -5,10 +5,11 @@
  */
 package main;
 
-import contract.ControllerOrder;
+import contract.*;
 import controller.Controller;
-import model.Model;
+import view.Menu;
 import view.View;
+import model.*;
 
 /**
  * The Class Main.
@@ -22,14 +23,21 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws InterruptedException 
      */
-    public static void main(final String[] args) {
-        final Model model = new Model();
-        final View view = new View(model);
-        final Controller controller = new Controller(view, model);
-        view.setController(controller);
+	
+    public static void main(final String[] args) throws InterruptedException {
 
-        controller.control();
-        controller.orderPerform(ControllerOrder.English);
-    }
-}
+    	Launcher launcher = new Launcher(1);
+    	View view = new View(launcher);
+    	
+   			try {
+   				
+   					Controller controller = new Controller(view, launcher);
+   				
+  				} catch (Exception e1) {
+ 					e1.printStackTrace();
+   					}
+   				}
+      }
+
