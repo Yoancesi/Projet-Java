@@ -166,13 +166,15 @@ public class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	protected void paintComponent(final Graphics graphics, Launcher launcher) {
+	protected void paintComponent(Launcher launcher) {
+		Graphics graphics = null;
+		//Graphics graphics = new Graphics();
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 				
 		//testmap
 		
 		//should be in view
-		this.launcher = new Launcher(1);
+		this.launcher = launcher;
 		{	
 			char map[][] = launcher.getTable();
 			for(int y=0; y < 30; y++)

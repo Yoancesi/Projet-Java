@@ -3,6 +3,7 @@ package controller;
 import contract.UserOrder;
 import entity.*;
 import mobile.Character;
+import model.Launcher;
 import contract.IController;
 import contract.ILauncher;
 import contract.IView;
@@ -34,9 +35,10 @@ public final class Controller implements IController {
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final IView view, final ILauncher launcher) {
+	public Controller(final View view, final Launcher launcher) {
 		this.setView(view);
 		this.setLauncher(launcher);
+		
 	}
 
 	public UserOrder getStackOrder() {

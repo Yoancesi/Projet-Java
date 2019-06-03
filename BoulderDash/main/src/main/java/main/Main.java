@@ -7,6 +7,7 @@ package main;
 
 import contract.*;
 import controller.Controller;
+import view.Menu;
 import view.View;
 import model.*;
 
@@ -24,13 +25,19 @@ public abstract class Main {
      *            the arguments
      * @throws InterruptedException 
      */
+	
     public static void main(final String[] args) throws InterruptedException {
-        final Launcher launcher = new Launcher(1);
-        final View view = new View(Launcher);
-        final Controller controller = new Controller(view, launcher);
-        view.setController(controller);
 
-        controller.control();
-        controller.orderPerform(UserOrder.Up);
-    }
-}
+    	Launcher launcher = new Launcher(1);
+    	View view = new View(launcher);
+    	
+   			try {
+   				
+   					Controller controller = new Controller(view, launcher);
+   				
+  				} catch (Exception e1) {
+ 					e1.printStackTrace();
+   					}
+   				}
+      }
+

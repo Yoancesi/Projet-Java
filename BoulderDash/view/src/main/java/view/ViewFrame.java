@@ -16,7 +16,7 @@ import contract.IModel;
  *
  * @author Son LUONG
  */
-class ViewFrame extends JFrame implements KeyListener, Runnable {
+class ViewFrame extends JFrame implements KeyListener{
 
 	/** The model. */
 	private IModel						model;
@@ -139,7 +139,7 @@ class ViewFrame extends JFrame implements KeyListener, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	private void buildViewFrame(final IModel model) {
+	void buildViewFrame(final IModel model) {
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -184,17 +184,5 @@ class ViewFrame extends JFrame implements KeyListener, Runnable {
 	 */
 	public void keyReleased(final KeyEvent e) {
 
-	}
-
-
-	@Override
-	public void run() 
-	{
-		new Thread().start();
-	}
-	
-	public void stop()
-	{
-		System.exit(0);
 	}
 }

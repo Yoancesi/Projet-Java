@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
@@ -12,6 +13,7 @@ import contract.IView;
 
 import entity.*;
 import mobile.*;
+import model.Launcher;
 import motionless.*;
 
 import showboard.BoardFrame;
@@ -24,7 +26,10 @@ import showboard.BoardFrame;
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private ViewFrame viewFrame = new ViewFrame(null);	
+	private IModel model;
+	private ViewFrame viewFrame;
+	private ViewPanel viewPanel;
+	protected Launcher launcher;
 	
 	/** The player's character */
 	protected Mobile myCharacter = null;
@@ -37,15 +42,26 @@ public final class View implements IView, Runnable {
 
 	/** The BoardFrame */
 	protected final BoardFrame boardFrame = new BoardFrame("BoulderDash");
+	
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+	
+
 	/**
 	 * Instantiates a new view.
 	 *
 	 * @param model
 	 *          the model
 	 */
-	public View(final IModel model) {
+	public View(Launcher launcher) {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
+		viewFrame.buildViewFrame(model);
+		
+		viewPanel = new ViewPanel(viewFrame);
+		viewPanel.paintComponent(launcher);
+		viewPanel.update();
 	}
 
 	/**
@@ -92,6 +108,7 @@ public final class View implements IView, Runnable {
 	 */
 	public void run() {
 		this.viewFrame.setVisible(true);
+		new Thread().start();
 	}
 
 	/**
@@ -102,5 +119,11 @@ public final class View implements IView, Runnable {
 	 */
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
+	}
+
+	@Override
+	public void counterDiamond(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }
