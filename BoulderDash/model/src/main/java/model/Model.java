@@ -15,7 +15,7 @@ protected Launcher table;
 @throws
  IOException 
  */
-public Model(int level) throws IOException {
+public Model(int level) /*throws IOException*/ {
 	super();
 	table = new Launcher(level);
 	this.setMap(table.getTable());

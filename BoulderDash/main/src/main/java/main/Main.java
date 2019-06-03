@@ -1,20 +1,13 @@
-/**
-
- * @author Jean-Aymeric DIET jadiet@cesi.fr
- * @version 1.0
- */
 package main;
 
 import contract.*;
 import controller.Controller;
+import model.Launcher;
 import view.Menu;
 import view.View;
-import model.*;
 
 /**
  * The Class Main.
- *
- * @author Jean-Aymeric Diet
  */
 public abstract class Main {
 
@@ -27,10 +20,10 @@ public abstract class Main {
      */
 	
     public static void main(final String[] args) throws InterruptedException {
-
+    	
     	Launcher launcher = new Launcher(1);
     	View view = new View(launcher);
-    	
+
    			try {
    				
    					Controller controller = new Controller(view, launcher);
@@ -40,4 +33,3 @@ public abstract class Main {
    					}
    				}
       }
-

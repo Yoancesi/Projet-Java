@@ -7,7 +7,7 @@ import contract.*;
 
 
 public class Launcher implements ILauncher{
-	protected static int level = 0;
+	protected static int level = 1;
 	protected static char tab[][] = new char[13][13];
 	protected static DBConnection connector;
 	protected static CreateMAP mapQuery;

@@ -31,13 +31,13 @@ import motionless.Wall;
 public class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
-	private ViewFrame					viewFrame;
+	private ViewFrame	viewFrame = new ViewFrame();;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 	Font font = new Font("Sah quel plaisir", Font.BOLD, 15);
 	private int diamondsGet = 0;
-	private Launcher launcher;
 	private int finalDiamonds;
+	private Launcher launcher;
 	
 	/**
 	 * The constucteur of Panel
@@ -57,12 +57,13 @@ public class ViewPanel extends JPanel implements Observer {
 	 * @param g
 	 */
 	
-	public void counterDiamond(Graphics g)
+	public int counterDiamond(Graphics g)
 	{
 		g.setFont(font);
 		g.setColor(Color.black);
 		g.drawString("Diamonds : " + diamondsGet + "/" + finalDiamonds, 10, 365);
 		this.finalDiamonds = diamondsGet;
+		return finalDiamonds;
 	}
 	
 	public int getFinalDiamonds() {
@@ -131,7 +132,8 @@ public class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
-		viewFrame.getModel().getObservable().addObserver(this);
+		viewFrame.getModel().getObservable().addObserver(this);	
+		
 	}
 
 	/**
@@ -166,14 +168,17 @@ public class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	protected void paintComponent(Launcher launcher) {
-		Graphics graphics = null;
+	protected void paintComponent(Graphics graphics, Launcher launcher) {
+		
+		super.paintComponents(graphics);
+		
+		if (graphics == null)
+			return;
+		
+		
 		//Graphics graphics = new Graphics();
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-				
-		//testmap
 		
-		//should be in view
 		this.launcher = launcher;
 		{	
 			char map[][] = launcher.getTable();

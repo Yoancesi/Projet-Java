@@ -16,7 +16,7 @@ import contract.IModel;
  *
  * @author Son LUONG
  */
-class ViewFrame extends JFrame implements KeyListener{
+public class ViewFrame extends JFrame implements KeyListener{
 
 	/** The model. */
 	private IModel						model;
@@ -148,6 +148,7 @@ class ViewFrame extends JFrame implements KeyListener{
 		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
 	}
+	
 
 	/**
 	 * Prints the message.

@@ -14,6 +14,7 @@ import contract.IView;
 import entity.*;
 import mobile.*;
 import model.Launcher;
+import model.Model;
 import motionless.*;
 
 import showboard.BoardFrame;
@@ -23,10 +24,10 @@ import showboard.BoardFrame;
  * @author Son LUONG
  * @version 1.0
  */
-public final class View implements IView, Runnable {
+public class View implements IView, Runnable {
 
 	/** The frame. */
-	private IModel model;
+	private IModel model = new Model(1);
 	private ViewFrame viewFrame;
 	private ViewPanel viewPanel;
 	protected Launcher launcher;
@@ -58,9 +59,9 @@ public final class View implements IView, Runnable {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 		viewFrame.buildViewFrame(model);
-		
 		viewPanel = new ViewPanel(viewFrame);
-		viewPanel.paintComponent(launcher);
+		Graphics g = null;
+		viewPanel.paintComponent(g, launcher);
 		viewPanel.update();
 	}
 

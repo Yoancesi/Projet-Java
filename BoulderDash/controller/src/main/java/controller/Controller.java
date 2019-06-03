@@ -14,11 +14,13 @@ import view.*;
  */
 public final class Controller implements IController {
 
+	protected ViewFrame viewFrame = new ViewFrame();
+
 	private IView	iview;
 	
-	protected ViewPanel viewPanel;
+	protected ViewPanel viewPanel = new ViewPanel(viewFrame);
 
-	private ILauncher launcher;
+	private ILauncher launcher = new Launcher(1);;
 
 	private UserOrder stackOrder;
 	
