@@ -3,7 +3,6 @@
  */
 package mobile;
 
-import java.awt.Image;
 import java.awt.Point;
 
 import showboard.IPawn;

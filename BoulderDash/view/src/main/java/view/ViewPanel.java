@@ -47,6 +47,7 @@ public class ViewPanel extends JPanel implements Observer {
 	 *          the view frame
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
+		viewFrame.add(this);
 		viewFrame.getModel().getObservable().addObserver(this);	
 	}
 	
@@ -104,10 +105,11 @@ public class ViewPanel extends JPanel implements Observer {
 				{'X', 'P', 'X'}
 		};
 
-		for(int y=0; y < 3; y++)
+		/*for(int y=0; y <= 2; y++)
 		{
+			System.out.println("entered first for");
 			int x;
-			for( x=0; x < 3; x++)
+			for( x=0; x <=2; x++)
 			{
 				switch(map[x][y])
 				{
@@ -126,14 +128,22 @@ public class ViewPanel extends JPanel implements Observer {
 								add(entity);
 							}
 							break;
-				}
-				((Entity) entity).setX(x);
-				((Entity) entity).setY(y);
+				}*/
+				setVisible(true);
+				entity = new Wall(50, 50);
+				((Entity) entity).setX(50);
+				((Entity) entity).setY(50);
+				if (((Entity) entity).getImage() == null)
+					System.out.println("entity img null");
 				add(entity);
-		}
-		}
-		this.update();
-		System.out.println("paint components");
+				System.out.println("after switch");
+				//((Entity) entity).setX(1);
+			//	((Entity) entity).setY(1);
+				//add(entity);
+				setVisible(true);
+		//}
+		//}
+		validate();
 	}
 	/*
 	 * (non-Javadoc)
@@ -148,11 +158,16 @@ public class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
+	@Override
 	protected void paintComponent(Graphics graphics) {
-		super.paintComponents(graphics);
+		super.paintComponent(graphics);
+		setVisible(true);
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		graphics.drawImage(((Entity) entity).getImage(), entity.getX(), entity.getY(), this);
-		
+		if (((Entity) entity).getImage() == null)
+			System.out.println("imgnull");
+		System.out.println("paint components");
+		setVisible(true);
 		}
 }
 

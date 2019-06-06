@@ -1,14 +1,8 @@
 package view;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import contract.IController;
 import contract.IModel;
 
 /**
@@ -33,6 +27,7 @@ public class ViewFrame extends JFrame{
 		this.setResizable(false);
 		this.setSize(512, 512);
 		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 		System.out.println("created frame");
 	}
 	

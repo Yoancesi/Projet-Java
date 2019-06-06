@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,13 +18,18 @@ import javax.swing.JPanel;
  */
 
 
-public class Menu extends JFrame
+public class Menu extends JPanel
 {
 	
-	public void CreateMenu () 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6475807130930920652L;
+
+	public Menu () 
 	{
 		setSize(new Dimension(400, 400));
-		this.setTitle("BoulderDash");
+		this.setName("BoulderDash");
 		setLayout(new BorderLayout());
 		JLabel background = new JLabel(new ImageIcon("Image Path"));
 		add(background);
@@ -97,8 +101,7 @@ public class Menu extends JFrame
 		});
 		
 		boutonPane.add(bouton2);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.getContentPane().add(boutonPane, BorderLayout.SOUTH);
+		this.getRootPane().add(boutonPane, BorderLayout.SOUTH);
 		this.setVisible(true);
 		boutonPane.add(bouton3);
 		boutonPane.add(bouton4);				

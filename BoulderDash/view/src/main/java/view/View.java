@@ -1,23 +1,13 @@
 package view;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
 import contract.UserOrder;
-import contract.IController;
 import contract.IModel;
 import contract.IView;
-
-import entity.*;
-import mobile.*;
-import model.Launcher;
-import model.Model;
-import motionless.*;
-
-import showboard.BoardFrame;
 /**
  * The Class View.
  *
@@ -27,10 +17,11 @@ import showboard.BoardFrame;
 public class View implements IView, Runnable {
 
 	/** The frame. */
-	private IModel model;
-	private ViewFrame viewFrame;
-	private ViewPanel viewPanel;
-
+	protected IModel model;
+	protected ViewFrame viewFrame;
+	public ViewPanel viewPanel;
+	//protected Menu menu = new Menu();
+	
 	/**
 	 * Instantiates a new view.
 	 *
@@ -40,7 +31,8 @@ public class View implements IView, Runnable {
 	public View(IModel model) {
 		this.model = model;
 		this.viewFrame = new ViewFrame(model);
-		viewPanel = new ViewPanel(viewFrame);
+		this.viewPanel = new ViewPanel(viewFrame);
+		
 		SwingUtilities.invokeLater(this); 
 	}
 
@@ -89,7 +81,7 @@ public class View implements IView, Runnable {
 	public void run() {
 		this.viewPanel.makeMap();
 		this.viewFrame.setVisible(true);
-		new Thread().start();
+		//new Thread().start();
 		System.out.println("print visible");
 	}
 

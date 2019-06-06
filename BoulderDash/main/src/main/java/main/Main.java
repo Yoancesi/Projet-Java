@@ -2,15 +2,9 @@ package main;
 
 import java.io.IOException;
 
-import javax.swing.JFrame;
-
 import contract.*;
 import controller.Controller;
-import model.Launcher;
 import model.Model;
-import view.Menu;
-import view.View;
-import view.ViewFrame;
 import view.View;
 
 /**
@@ -35,8 +29,6 @@ public abstract class Main {
    			 {
    					System.out.println("kk");
    					Controller controller = new Controller(model, view);
-   					System.out.println("kk2");
-   					
   				} catch (Exception e1) {
  					e1.printStackTrace();
    					}

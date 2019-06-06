@@ -7,6 +7,10 @@ import javax.swing.JComponent;
 
 public abstract class Entity extends JComponent implements IEntity
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4133750133741371948L;
 	protected Sprite sprite;
 	protected boolean permeability;
 	protected int x;
