@@ -1,8 +1,11 @@
 package entity;
 
+import java.awt.Component;
 import java.awt.Image;
 
-public abstract class Entity
+import javax.swing.JComponent;
+
+public abstract class Entity extends JComponent implements IEntity
 {
 	protected Sprite sprite;
 	protected boolean permeability;

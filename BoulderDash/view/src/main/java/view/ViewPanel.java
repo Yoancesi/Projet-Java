@@ -1,17 +1,18 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Panel;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import contract.*;
 import model.CreateMAP;
 import model.Launcher;
-import contract.ILauncher;
 import entity.Entity;
 import mobile.Boulder;
 import mobile.Character;
@@ -26,36 +27,28 @@ import motionless.Wall;
 /**
  * The Class ViewPanel.
  *
- * @author Son LUONG
+ * @author saja
  */
 public class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
-	private ViewFrame	viewFrame = new ViewFrame();;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
 	Font font = new Font("Sah quel plaisir", Font.BOLD, 15);
 	private int diamondsGet = 0;
 	private int finalDiamonds;
-	private Launcher launcher;
+	protected IModel model;
+	protected JComponent entity;
 	
 	/**
-	 * The constucteur of Panel
-	 * 
-	 *  @param maker
+	 * Instantiates a new view panel.
+	 *
+	 * @param viewFrame
+	 *          the view frame
 	 */
-	
-	public ViewPanel(Launcher launcher, int finalDiamonds)
-	{
-		this.launcher = launcher;
-		this.finalDiamonds = finalDiamonds;
+	public ViewPanel(final ViewFrame viewFrame) {
+		viewFrame.getModel().getObservable().addObserver(this);	
 	}
-	
-	/**
-	 * Calls the draw functions of MapMaker
-	 * 
-	 * @param g
-	 */
 	
 	public int counterDiamond(Graphics g)
 	{
@@ -66,6 +59,15 @@ public class ViewPanel extends JPanel implements Observer {
 		return finalDiamonds;
 	}
 	
+	
+	public IModel getModel() {
+		return model;
+	}
+
+	public void setModel(IModel model) {
+		this.model = model;
+	}
+
 	public int getFinalDiamonds() {
 		return finalDiamonds;
 	}
@@ -80,16 +82,8 @@ public class ViewPanel extends JPanel implements Observer {
 		g.fillRect(0, 0, 800, 500);
 	}
 	
-	/*
-	public void paintComponent1(Graphics g)
-	{
-		this.updateCount(g);
-		this.counterDiamond(g);
-		this.launcher.drawMap(g);
-	}
-	*/
 	/**
-	 * Update the map when mouvement is done
+	 * Updates the frame
 	 */
 	
 	public void update()
@@ -101,60 +95,46 @@ public class ViewPanel extends JPanel implements Observer {
 	{
 		return diamondsGet;
 	}
-	
-	private Character character;
-	
-	private Entity sprite;
 
-	
-	
-	public Character getCharacter() {
-		return character;
+	public void makeMap()
+	{
+				
+		char map[][] = {
+				{'X', 'X', 'X'},
+				{'X', 'P', 'X'}
+		};
+
+		for(int y=0; y < 3; y++)
+		{
+			int x;
+			for( x=0; x < 3; x++)
+			{
+				switch(map[x][y])
+				{
+					case 'X': entity = new Wall(x, y); break;
+					case 'V': entity = new DugDirt(x, y); break;
+					case 'C': entity = new Boulder(x, y); break;
+					case 'D': entity = new Diamond(x, y); break;
+					case 'S': entity = new ExitPortal(x, y); break;
+					case 'K': entity = new KillerButterfly(); break;
+					default:entity = new FilledDirt(x, y);
+							if(map[y][x] == 'P') 
+							{
+								entity = new Character(x, y);
+								((Entity) entity).setX(x);
+								((Entity) entity).setY(y);
+								add(entity);
+							}
+							break;
+				}
+				((Entity) entity).setX(x);
+				((Entity) entity).setY(y);
+				add(entity);
+		}
+		}
+		this.update();
+		System.out.println("paint components");
 	}
-
-	public void setCharacter(Character character) {
-		this.character = character;
-	}
-
-	public Entity getSprite() {
-		return sprite;
-	}
-
-	public void setSprite(Entity sprite) {
-		this.sprite = sprite;
-	}
-
-	/**
-	 * Instantiates a new view panel.
-	 *
-	 * @param viewFrame
-	 *          the view frame
-	 */
-	public ViewPanel(final ViewFrame viewFrame) {
-		this.setViewFrame(viewFrame);
-		viewFrame.getModel().getObservable().addObserver(this);	
-		
-	}
-
-	/**
-	 * Gets the view frame.
-	 *
-	 * @return the view frame
-	 */
-	private ViewFrame getViewFrame() {
-		return this.viewFrame;
-	}
-
-	/**
-	 * Sets the view frame.
-	 *
-	 * @param viewFrame
-	 *          the new view frame
-	 */
-	private void setViewFrame(final ViewFrame viewFrame) {
-		this.viewFrame = viewFrame;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 *
@@ -168,47 +148,11 @@ public class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
-	protected void paintComponent(Graphics graphics, Launcher launcher) {
-		
+	protected void paintComponent(Graphics graphics) {
 		super.paintComponents(graphics);
-		
-		if (graphics == null)
-			return;
-		
-		
-		//Graphics graphics = new Graphics();
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+		graphics.drawImage(((Entity) entity).getImage(), entity.getX(), entity.getY(), this);
 		
-		this.launcher = launcher;
-		{	
-			char map[][] = launcher.getTable();
-			for(int y=0; y < 30; y++)
-			{
-				int x;
-				for( x=0; x < 30; x++)
-				{
-					switch(map[y][x])
-					{
-						case 'X': sprite = new Wall(x, y); break;
-						case 'V': sprite = new FilledDirt(x, y); break;
-						case 'C': sprite = new Boulder(x, y); break;
-						case 'D': sprite = new Diamond(x, y); break;
-						case 'S': sprite = new ExitPortal(x, y); break;
-						case 'K': sprite = new KillerButterfly(); break;
-						default:sprite = new DugDirt(x, y);
-								if(map[y][x] == 'P') 
-								{
-									character = new Character(x, y);
-									graphics.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), null);
-								}
-								break;
-					}
-					sprite.setX(x);
-					sprite.setY(y);
-					graphics.drawImage(sprite.getImage(), sprite.getX(), sprite.getY(), null);
-			}
-			}
 		}
-
-	}
 }
+

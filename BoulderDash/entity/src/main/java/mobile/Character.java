@@ -1,5 +1,7 @@
 package mobile;
 
+import java.awt.Point;
+
 import entity.Sprite;
 
 public class Character extends Mobile
@@ -8,5 +10,11 @@ public class Character extends Mobile
 	{
 		this.sprite = new Sprite(x, y, "Sprite/character.png", false);
 		this.permeability = false;
+	}
+
+	@Override
+	public Point getPosition() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

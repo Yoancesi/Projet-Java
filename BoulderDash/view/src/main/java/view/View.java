@@ -21,33 +21,15 @@ import showboard.BoardFrame;
 /**
  * The Class View.
  *
- * @author Son LUONG
+ * @author saja
  * @version 1.0
  */
 public class View implements IView, Runnable {
 
 	/** The frame. */
-	private IModel model = new Model(1);
+	private IModel model;
 	private ViewFrame viewFrame;
 	private ViewPanel viewPanel;
-	protected Launcher launcher;
-	
-	/** The player's character */
-	protected Mobile myCharacter = null;
-	
-	/** The close view on the player */
-	protected Rectangle closeView = null;
-	
-	/** The order performer */
-	protected UserOrder orderPerformer = null;
-
-	/** The BoardFrame */
-	protected final BoardFrame boardFrame = new BoardFrame("BoulderDash");
-	
-	public BoardFrame getBoardFrame() {
-		return boardFrame;
-	}
-	
 
 	/**
 	 * Instantiates a new view.
@@ -55,14 +37,11 @@ public class View implements IView, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	public View(Launcher launcher) {
+	public View(IModel model) {
+		this.model = model;
 		this.viewFrame = new ViewFrame(model);
-		SwingUtilities.invokeLater(this);
-		viewFrame.buildViewFrame(model);
 		viewPanel = new ViewPanel(viewFrame);
-		Graphics g = null;
-		viewPanel.paintComponent(g, launcher);
-		viewPanel.update();
+		SwingUtilities.invokeLater(this); 
 	}
 
 	/**
@@ -108,18 +87,10 @@ public class View implements IView, Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
+		this.viewPanel.makeMap();
 		this.viewFrame.setVisible(true);
 		new Thread().start();
-	}
-
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
-	public void setController(final IController controller) {
-		this.viewFrame.setController(controller);
+		System.out.println("print visible");
 	}
 
 	@Override
@@ -127,4 +98,5 @@ public class View implements IView, Runnable {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

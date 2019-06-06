@@ -3,7 +3,7 @@ package mobile;
 import mobile.Direction;
 import entity.*;
 
-public abstract class Mobile extends Entity{
+public abstract class Mobile extends Entity implements IMobile{
 	
 	protected int x;
 	protected int y;

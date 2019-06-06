@@ -6,6 +6,7 @@ import mobile.Character;
 import model.Launcher;
 import contract.IController;
 import contract.ILauncher;
+import contract.IModel;
 import contract.IView;
 import view.*;
 
@@ -14,11 +15,11 @@ import view.*;
  */
 public final class Controller implements IController {
 
-	private IView	iview;
+	private View iview;
 	
 	protected ViewPanel viewPanel;
 
-	private ILauncher launcher;
+	private IModel model;
 
 	private UserOrder stackOrder;
 	
@@ -30,14 +31,14 @@ public final class Controller implements IController {
 	/**
 	 * Instantiates a new controller.
 	 *
-	 * @param view
+	 * @param model
 	 *          the view
 	 * @param model
 	 *          the model
 	 */
-	public Controller(final View view, final Launcher launcher) {
-		this.setView(view);
-		this.setLauncher(launcher);
+	public Controller(final IModel model, final View vieww) {
+		this.setVieww(vieww);
+		this.setModel(model);
 		
 	}
 
@@ -49,19 +50,21 @@ public final class Controller implements IController {
 		this.stackOrder = stackOrder;
 	}
 	
-	public void setLauncher(ILauncher launcher) {
-		this.launcher = launcher;
+	
+
+	public IModel getModel() {
+		return model;
 	}
 
-	public ILauncher getLauncher() {
-		return launcher;
+	public void setModel(IModel model) {
+		this.model = model;
 	}
 
-	private void setView(final IView pview) {
-		this.iview = pview;
+	private void setVieww(final View view) {
+		this.iview = view;
 	}
 	
-	public IView getView() {
+	public View getView() {
 		return iview;
 	}
 
@@ -100,11 +103,11 @@ public final class Controller implements IController {
 	        }  
 	      }
 	    
-	     if (viewPanel.getFinalDiamonds() == 0) {
+	   /*  if (viewPanel.getFinalDiamonds() == 0) {
 	        this.getView().printMessage("WIN");
 	        System.exit(0);
-	      }
-	    this.getView().printMessage("GAME OVER");
+	      }*/
+	    ((IView) this.getView()).printMessage("GAME OVER");
 	    System.exit(0);
 	  }
 }

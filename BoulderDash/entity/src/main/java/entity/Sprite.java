@@ -2,9 +2,14 @@ package entity;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
-public class Sprite {
+public class Sprite extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6103017145128311078L;
 	protected int x;
     protected int y;
     protected int width;

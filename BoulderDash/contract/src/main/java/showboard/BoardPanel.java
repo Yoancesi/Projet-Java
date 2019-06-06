@@ -50,7 +50,7 @@ import javax.swing.JPanel;
  * @see Observer
  * @see Observable
  */
-class BoardPanel extends JPanel implements Observer {
+public class BoardPanel extends JPanel implements Observer {
 
     /** The Constant serialVersionUID. */
     private static final long   serialVersionUID = -3618605287900763008L;
@@ -82,7 +82,7 @@ class BoardPanel extends JPanel implements Observer {
     /**
      * Instantiates a new board panel.
      */
-    BoardPanel() {
+    public BoardPanel() {
         super();
         this.pawns = new ArrayList<>();
         this.noImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
@@ -334,7 +334,7 @@ class BoardPanel extends JPanel implements Observer {
      * @param y
      *            the y
      */
-    private void drawSquareXY(final Graphics graphics, final int x, final int y) {
+    public void drawSquareXY(final Graphics graphics, final int x, final int y) {
         Image image;
         image = this.getImageXY(x, y, this.getWidthLimit(), this.getHeightLimit());
         graphics.drawImage(image, this.getSquareSizeWidth() * (x - this.getCornerMinX()),
