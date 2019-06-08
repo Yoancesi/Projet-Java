@@ -32,7 +32,7 @@ public class View implements IView, Runnable {
 		this.model = model;
 		this.viewFrame = new ViewFrame(model);
 		this.viewPanel = new ViewPanel(viewFrame);
-		
+		//viewPanel.setVisible(true);
 		SwingUtilities.invokeLater(this); 
 	}
 
