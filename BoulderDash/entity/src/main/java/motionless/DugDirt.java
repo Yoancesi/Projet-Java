@@ -6,7 +6,7 @@ public class DugDirt extends Motionless{
 	
 	public DugDirt(int x, int y)
 	{		
-		this.sprite = new Sprite(x, y, "Sprite/dugdirt.png", true);
+		this.sprite = new Sprite(x, y, "C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/motionless/Sprites/dugdirt.png", true);
 		this.permeability = true;
 	}
 }

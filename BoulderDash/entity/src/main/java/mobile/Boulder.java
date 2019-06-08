@@ -8,7 +8,7 @@ public class Boulder extends Mobile
 {
 	public Boulder (int x, int y)
 	{		
-		this.sprite = new Sprite(x, y, "Sprite/boulder.png", false);
+		this.sprite = new Sprite(x, y, "C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/mobile/Sprites/boulder.png", false);
 		this.permeability = false;
 	}
 

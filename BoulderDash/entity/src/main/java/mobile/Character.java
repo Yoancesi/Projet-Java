@@ -8,7 +8,7 @@ public class Character extends Mobile
 {
 	public Character(int x, int y)
 	{
-		this.sprite = new Sprite(x, y, "Sprite/character.png", false);
+		this.sprite = new Sprite(x, y, "file:///C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/mobile/Sprites/character.png", false);
 		this.permeability = false;
 	}
 
