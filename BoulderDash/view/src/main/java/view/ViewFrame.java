@@ -25,7 +25,7 @@ public class ViewFrame extends JFrame{
 		this.setTitle("BoulderDash");
 		this.model = model;
 		this.setResizable(false);
-		this.setSize(512, 512);
+		this.setSize(700, 700);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		System.out.println("created frame");
@@ -49,6 +49,4 @@ public class ViewFrame extends JFrame{
 	public void printMessage(final String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
-
-	
 }

@@ -44,7 +44,7 @@ public class ViewPanel extends JPanel implements Observer {
 	 * Instantiates a new view panel.
 	 *
 	 * @param viewFrame
-	 *          the view frame
+	 *  
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		viewFrame.add(this);
@@ -76,16 +76,13 @@ public class ViewPanel extends JPanel implements Observer {
 	/**
 	 * @param g
 	 */
-	
+	/*
 	public void updateCount(Graphics g)
 	{
 		g.setColor(Color.white);
 		g.fillRect(0, 0, 800, 500);
-	}
+	}*/
 	
-	/**
-	 * Updates the frame
-	 */
 	
 	public void update()
 	{
@@ -99,18 +96,21 @@ public class ViewPanel extends JPanel implements Observer {
 
 	public void makeMap()
 	{
-				
+		
+		setVisible(true);
+		
 		char map[][] = {
-				{'X', 'X', 'X'},
+				{'D', 'X', 'X'},
 				{'X', 'P', 'X'}
 		};
 
-		/*for(int y=0; y <= 2; y++)
+		for(int y=0; y < 2; y++)
 		{
 			System.out.println("entered first for");
 			int x;
-			for( x=0; x <=2; x++)
+			for( x=0; x <2; x++)
 			{
+				setVisible(true);
 				switch(map[x][y])
 				{
 					case 'X': entity = new Wall(x, y); break;
@@ -128,22 +128,20 @@ public class ViewPanel extends JPanel implements Observer {
 								add(entity);
 							}
 							break;
-				}*/
-				setVisible(true);
-				entity = new Wall(50, 50);
-				((Entity) entity).setX(50);
-				((Entity) entity).setY(50);
+				}
+				((Entity) entity).setX(x);
+				((Entity) entity).setY(y);
 				if (((Entity) entity).getImage() == null)
 					System.out.println("entity img null");
 				add(entity);
-				System.out.println("after switch");
-				//((Entity) entity).setX(1);
-			//	((Entity) entity).setY(1);
-				//add(entity);
-				setVisible(true);
-		//}
-		//}
-		validate();
+				System.out.println("added entity to panel");
+			}
+		}
+		//((JComponent) ((Entity) entity).getImage()).setSize(20, 20);
+		System.out.println("after switch");
+		setVisible(true);
+		repaint();
+		//validate();
 	}
 	/*
 	 * (non-Javadoc)
@@ -163,7 +161,7 @@ public class ViewPanel extends JPanel implements Observer {
 		super.paintComponent(graphics);
 		setVisible(true);
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawImage(((Entity) entity).getImage(), entity.getX(), entity.getY(), this);
+		graphics.drawImage(((Entity) entity).getImage(), entity.getX(), entity.getY(), null);
 		if (((Entity) entity).getImage() == null)
 			System.out.println("imgnull");
 		System.out.println("paint components");
