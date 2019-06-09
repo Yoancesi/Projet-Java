@@ -119,14 +119,9 @@ public class ViewPanel extends JPanel implements Observer {
 					case 'D': entity = new Diamond(x, y); break;
 					case 'S': entity = new ExitPortal(x, y); break;
 					case 'K': entity = new KillerButterfly(x, y); break;
+					case 'P': entity = new Character(x, y);
 					default:entity = new FilledDirt(x, y);
-							if(map[y][x] == 'P') 
-							{
-								entity = new Character(x, y);
-								((Entity) entity).setX(x);
-								((Entity) entity).setY(y);
-								add(entity);
-							}
+
 							break;
 				}
 				((Entity) entity).setX(x);
