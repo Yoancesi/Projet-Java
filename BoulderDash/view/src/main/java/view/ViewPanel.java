@@ -27,7 +27,7 @@ import motionless.Wall;
 /**
  * The Class ViewPanel.
  *
- * @author saja
+ * @author saja, marwan
  */
 public class ViewPanel extends JPanel implements Observer {
 
@@ -39,6 +39,11 @@ public class ViewPanel extends JPanel implements Observer {
 	private int finalDiamonds;
 	protected IModel model;
 	protected JComponent entity;
+	char map[][] = {
+			{'X', 'X', 'X'},
+			{'K', 'P', 'S'},
+			{'X', 'X', 'X'}
+	};
 	
 	/**
 	 * Instantiates a new view panel.
@@ -51,16 +56,6 @@ public class ViewPanel extends JPanel implements Observer {
 		viewFrame.getModel().getObservable().addObserver(this);	
 	}
 	
-	public int counterDiamond(Graphics g)
-	{
-		g.setFont(font);
-		g.setColor(Color.black);
-		g.drawString("Diamonds : " + diamondsGet + "/" + finalDiamonds, 10, 365);
-		this.finalDiamonds = diamondsGet;
-		return finalDiamonds;
-	}
-	
-	
 	public IModel getModel() {
 		return model;
 	}
@@ -71,18 +66,7 @@ public class ViewPanel extends JPanel implements Observer {
 
 	public int getFinalDiamonds() {
 		return finalDiamonds;
-	}
-	
-	/**
-	 * @param g
-	 */
-	/*
-	public void updateCount(Graphics g)
-	{
-		g.setColor(Color.white);
-		g.fillRect(0, 0, 800, 500);
-	}*/
-	
+	}	
 	
 	public void update()
 	{
@@ -99,10 +83,6 @@ public class ViewPanel extends JPanel implements Observer {
 		
 		setVisible(true);
 		
-		char map[][] = {
-				{'D', 'X', 'X'},
-				{'X', 'P', 'X'}
-		};
 
 		for(int y=0; y < 2; y++)
 		{
@@ -120,7 +100,7 @@ public class ViewPanel extends JPanel implements Observer {
 					case 'S': entity = new ExitPortal(x, y); break;
 					case 'K': entity = new KillerButterfly(x, y); break;
 					case 'P': entity = new Character(x, y);
-					default:entity = new FilledDirt(x, y);
+					default: entity = new FilledDirt(x, y);
 
 							break;
 				}
@@ -130,12 +110,13 @@ public class ViewPanel extends JPanel implements Observer {
 					System.out.println("entity img null");
 				add(entity);
 				System.out.println("added entity to panel");
+				repaint();
 			}
 		}
 		//((JComponent) ((Entity) entity).getImage()).setSize(20, 20);
 		System.out.println("after switch");
 		setVisible(true);
-		repaint();
+		//repaint();
 		//validate();
 	}
 	/*
@@ -156,11 +137,38 @@ public class ViewPanel extends JPanel implements Observer {
 		super.paintComponent(graphics);
 		setVisible(true);
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawImage(((Entity) entity).getImage(), entity.getX(), entity.getY(), null);
-		if (((Entity) entity).getImage() == null)
-			System.out.println("imgnull");
+		drawMap(graphics);
 		System.out.println("paint components");
 		setVisible(true);
 		}
+	
+	public JComponent  getEntity(int x, int y) {	
+        switch(this.map[x][y])
+        {
+            case 'X': entity = new Wall(x, y); 
+            return entity;
+            case 'V': entity = new DugDirt(x, y); 
+            return entity;
+            case 'C': entity = new Boulder(x, y); 
+            return entity;
+            case 'D': entity = new Diamond(x, y); 
+            return entity;
+            case 'S': entity = new ExitPortal(x, y); 
+            return entity;
+            case 'P': entity = new Character(x, y);
+                ((Entity) entity).setX(x);
+                ((Entity) entity).setY(y);
+                return entity;
+            default:entity = new FilledDirt(x, y);
+            return entity;
+        }
+	}
+	public void drawMap(Graphics g) {
+	for (int x=0; x < 2; x++) {
+	    for (int y=0; y < 2; y++) {
+	        entity = getEntity(x,y);
+	        g.drawImage(((Entity)entity).getImage(), x+10, y+10, this);
+	    }
+	}
+	}
 }
-

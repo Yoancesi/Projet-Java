@@ -25,7 +25,7 @@ public class ViewFrame extends JFrame{
 		this.setTitle("BoulderDash");
 		this.model = model;
 		this.setResizable(false);
-		this.setSize(700, 700);
+		this.setSize(300,300);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		System.out.println("created frame");
