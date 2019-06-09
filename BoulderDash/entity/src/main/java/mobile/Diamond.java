@@ -9,7 +9,7 @@ public class Diamond extends Mobile {
 	public Diamond (int x, int y)
 	{		
 		this.sprite = new Sprite(x, y, "C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/mobile/Sprites/diamond.png", true);
-		this.permeability = false;
+		this.permeability = true;
 	}
 
 	@Override
