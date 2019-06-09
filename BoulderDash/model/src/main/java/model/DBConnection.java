@@ -9,7 +9,7 @@ import java.sql.Statement;
 import contract.IDBConnection;
 
 public class DBConnection extends Launcher implements IDBConnection {
-	private final String URL = "jdbc:mysql://localhost:8888/phpMyAdmin/db_structure.php?server=1&db=jpublankproject";
+	private final String URL = "localhost/phpmyadmin/db_structure.php?server=1&db=projet-java";
 	private final String LOGIN = "root";
 	private final String PASSWORD = "";
 	private Connection connection = null;
@@ -27,8 +27,9 @@ public class DBConnection extends Launcher implements IDBConnection {
 
 	/**
 	 * Connection to the remote database
+	 * @return 
 	 */
-	public void connection() {
+	public Statement connection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
@@ -39,6 +40,7 @@ public class DBConnection extends Launcher implements IDBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return statement;
 	}
 
 	/* (non-Javadoc)

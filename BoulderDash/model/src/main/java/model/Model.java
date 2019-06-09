@@ -11,13 +11,12 @@ public final class Model extends Observable implements IModel {
 private char map[][];
 
 protected Launcher table;
-/*
-@throws
- IOException 
- */
+
 public Model(int level) throws IOException {
 	super();
 	table = new Launcher(level);
+	table.launcher();
+	
 	this.setMap(table.getTable());
 	}
 	@Override

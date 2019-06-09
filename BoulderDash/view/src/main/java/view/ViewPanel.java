@@ -39,11 +39,10 @@ public class ViewPanel extends JPanel implements Observer {
 	private int finalDiamonds;
 	protected IModel model;
 	protected JComponent entity;
-	char map[][] = {
-			{'X', 'X', 'X'},
-			{'K', 'P', 'S'},
-			{'X', 'X', 'X'}
-	};
+	char map[][] = model.getMap();
+	
+	
+	
 	
 	/**
 	 * Instantiates a new view panel.
@@ -53,7 +52,12 @@ public class ViewPanel extends JPanel implements Observer {
 	 */
 	public ViewPanel(final ViewFrame viewFrame) {
 		viewFrame.add(this);
-		viewFrame.getModel().getObservable().addObserver(this);	
+		viewFrame.getModel().getObservable().addObserver(this);
+		 for (int x=0; x < 3; x++) {
+	            for (int y=0; y < 3; y++) {
+	            	System.out.println(map[x][y]);
+	          }
+		 }
 	}
 	
 	public IModel getModel() {
@@ -84,11 +88,11 @@ public class ViewPanel extends JPanel implements Observer {
 		setVisible(true);
 		
 
-		for(int y=0; y < 2; y++)
+		for(int y=0; y < 3; y++)
 		{
 			System.out.println("entered first for");
 			int x;
-			for( x=0; x <2; x++)
+			for( x=0; x <3; x++)
 			{
 				setVisible(true);
 				switch(map[x][y])
@@ -134,13 +138,21 @@ public class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(Graphics graphics) {
-		super.paintComponent(graphics);
-		setVisible(true);
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		drawMap(graphics);
-		System.out.println("paint components");
-		setVisible(true);
-		}
+        super.paintComponent(graphics);
+        setVisible(true);
+        graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+        for (int x=0; x < 3; x++) {
+            for (int y=0; y < 3; y++) {
+                entity = getEntity(x,y);
+                graphics.drawImage(((Entity)entity).getImage(), entity.getX()+(x*16), entity.getY()+(y*16), this);
+            }
+        }
+        if (((Entity) entity).getImage() == null)
+            System.out.println("imgnull");
+        System.out.println("paint components");
+        setVisible(true);
+        }
+
 	
 	public JComponent  getEntity(int x, int y) {	
         switch(this.map[x][y])
@@ -162,13 +174,5 @@ public class ViewPanel extends JPanel implements Observer {
             default:entity = new FilledDirt(x, y);
             return entity;
         }
-	}
-	public void drawMap(Graphics g) {
-	for (int x=0; x < 2; x++) {
-	    for (int y=0; y < 2; y++) {
-	        entity = getEntity(x,y);
-	        g.drawImage(((Entity)entity).getImage(), x+10, y+10, this);
-	    }
-	}
 	}
 }
