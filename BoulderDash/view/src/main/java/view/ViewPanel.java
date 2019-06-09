@@ -39,7 +39,21 @@ public class ViewPanel extends JPanel implements Observer {
 	private int finalDiamonds;
 	protected IModel model;
 	protected JComponent entity;
-	char map[][] = model.getMap();
+	char map[][] = {
+			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+			{'X', 'P', 'X', 'X', 'O', 'V', 'V', 'C', 'X', 'O', 'V', 'X'},
+			{'X', 'V', 'C', 'C', 'D', 'C', 'X', 'V', 'C', 'D', 'C', 'X'},
+			{'X', 'C', 'D', 'O', 'C', 'X', 'D', 'O', 'C', 'V', 'C', 'X'},
+			{'X', 'V', 'C', 'C', 'V', 'V', 'C', 'X', 'O', 'C', 'X', 'X'},
+			{'X', 'V', 'X', 'X', 'O', 'X', 'V', 'V', 'C', 'C', 'V', 'X'},
+			{'X', 'C', 'V', 'C', 'V', 'C', 'X', 'C', 'V', 'O', 'X', 'X'},
+			{'X', 'C', 'O', 'V', 'C', 'V', 'X', 'V', 'C', 'V', 'C', 'X'},
+			{'X', 'V', 'D', 'V', 'V', 'C', 'C', 'C', 'X', 'V', 'V', 'X'},
+			{'X', 'C', 'V', 'C', 'X', 'O', 'C', 'V', 'O', 'O', 'S', 'X'},
+			{'X', 'X', 'V', 'C', 'V', 'V', 'C', 'C', 'C', 'V', 'C', 'X'},
+			{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
+	};
+	
 	
 	
 	
@@ -53,8 +67,8 @@ public class ViewPanel extends JPanel implements Observer {
 	public ViewPanel(final ViewFrame viewFrame) {
 		viewFrame.add(this);
 		viewFrame.getModel().getObservable().addObserver(this);
-		 for (int x=0; x < 3; x++) {
-	            for (int y=0; y < 3; y++) {
+		 for (int x=0; x < 12; x++) {
+	            for (int y=0; y < 12; y++) {
 	            	System.out.println(map[x][y]);
 	          }
 		 }
@@ -88,23 +102,23 @@ public class ViewPanel extends JPanel implements Observer {
 		setVisible(true);
 		
 
-		for(int y=0; y < 3; y++)
+		for(int y=0; y < 12; y++)
 		{
 			System.out.println("entered first for");
 			int x;
-			for( x=0; x <3; x++)
+			for( x=0; x <12; x++)
 			{
 				setVisible(true);
 				switch(map[x][y])
 				{
 					case 'X': entity = new Wall(x, y); break;
-					case 'V': entity = new DugDirt(x, y); break;
-					case 'C': entity = new Boulder(x, y); break;
+					case 'V': entity = new FilledDirt(x, y); break;
+					case 'C': entity = new FilledDirt(x, y); break;
 					case 'D': entity = new Diamond(x, y); break;
 					case 'S': entity = new ExitPortal(x, y); break;
 					case 'K': entity = new KillerButterfly(x, y); break;
 					case 'P': entity = new Character(x, y);
-					default: entity = new FilledDirt(x, y);
+					default: entity = new Boulder(x, y);
 
 							break;
 				}
@@ -141,8 +155,8 @@ public class ViewPanel extends JPanel implements Observer {
         super.paintComponent(graphics);
         setVisible(true);
         graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-        for (int x=0; x < 3; x++) {
-            for (int y=0; y < 3; y++) {
+        for (int x=0; x < 12; x++) {
+            for (int y=0; y < 12; y++) {
                 entity = getEntity(x,y);
                 graphics.drawImage(((Entity)entity).getImage(), entity.getX()+(x*16), entity.getY()+(y*16), this);
             }
@@ -159,9 +173,9 @@ public class ViewPanel extends JPanel implements Observer {
         {
             case 'X': entity = new Wall(x, y); 
             return entity;
-            case 'V': entity = new DugDirt(x, y); 
+            case 'V': entity = new FilledDirt(x, y); 
             return entity;
-            case 'C': entity = new Boulder(x, y); 
+            case 'C': entity = new FilledDirt(x, y); 
             return entity;
             case 'D': entity = new Diamond(x, y); 
             return entity;
@@ -171,7 +185,7 @@ public class ViewPanel extends JPanel implements Observer {
                 ((Entity) entity).setX(x);
                 ((Entity) entity).setY(y);
                 return entity;
-            default:entity = new FilledDirt(x, y);
+            default:entity = new Boulder(x, y);
             return entity;
         }
 	}

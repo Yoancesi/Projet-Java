@@ -6,7 +6,7 @@ public class ExitPortal extends Motionless{
 	
 	public ExitPortal(int x, int y)
 	{
-		this.sprite = new Sprite(x, y, "C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/mobile/Sprites/exitportal.png", true);
+		this.sprite = new Sprite(x, y, "C:/Users/yopyo/Documents/GitHub/Projet-Java/BoulderDash/entity/src/main/java/motionless/Sprites/exitportal.PNG", true);
 		this.permeability = true;
 	}
     

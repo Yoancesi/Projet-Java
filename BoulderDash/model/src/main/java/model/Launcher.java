@@ -20,7 +20,7 @@ public class Launcher implements ILauncher{
 	
 	public void launcher(){
 		connector = new DBConnection(level);
-		statement = connector.connection();
+		connector.connection();
 		
 		CreateMAP CreateMAP = new CreateMAP(level);
 		result = CreateMAP.executeMapQuery(result, statement);
@@ -28,6 +28,6 @@ public class Launcher implements ILauncher{
 	}
 	
 	public char[][] getTable() {
-		return tab;
+		return tab;	
 	}
 }
